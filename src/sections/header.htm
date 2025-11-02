@@ -1,0 +1,70 @@
+<!--
+PATH: /src/sections/header.htm
+PURPOSE: Top navigation bar and logo section for the landing page.
+IMPORTS: None (self-contained HTML, CSS, and JS).
+EXPORTS: Visual header with logo placeholder and navigation items.
+NOTES: Designed as a standalone section file; all styling and scripting are inline.
+-->
+
+<section id="header-section">
+  <header>
+    <div class="logo">LOGO</div>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Plans</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+</section>
+
+<style>
+  #header-section {
+    width: 100%;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+  }
+
+  #header-section header {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: sans-serif;
+  }
+
+  #header-section .logo {
+    font-weight: bold;
+    font-size: 1.25rem;
+  }
+
+  #header-section nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+
+  #header-section nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+  }
+
+  #header-section nav a:hover {
+    color: #0078ff;
+  }
+</style>
+
+<script>
+  // Example of simple section-specific script
+  document.addEventListener("DOMContentLoaded", () => {
+    const header = document.getElementById("header-section");
+    console.log("Header section loaded:", header);
+  });
+</script>

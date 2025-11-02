@@ -1,0 +1,17 @@
+{
+  "name": "lp-amil_dental",
+  "version": "1.0.0",
+  "description": "Amil Dental Landing Page project using Vite for build-time HTML includes.",
+  "main": "vite.config.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "vite": "^7.1.12"
+  }
+}

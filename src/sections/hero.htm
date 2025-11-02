@@ -1,0 +1,92 @@
+<!--
+PATH: /src/sections/hero.htm
+PURPOSE: Hero section featuring main headline, subtext, and call-to-action buttons.
+IMPORTS: None (self-contained HTML, CSS, and JS).
+EXPORTS: Introductory section with visual focus and CTA interaction.
+NOTES: Designed as a standalone section file; all styling and scripting are inline.
+-->
+
+<section id="hero-section">
+  <div class="hero-content">
+    <h1>Your Perfect Smile Starts Here</h1>
+    <p>Affordable, accessible, and high-quality dental plans designed to keep you smiling.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary">View Plans</a>
+      <a href="#" class="btn-secondary">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  #hero-section {
+    width: 100%;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0078ff 0%, #4facfe 100%);
+    color: white;
+    text-align: center;
+    font-family: sans-serif;
+    padding: 2rem;
+  }
+
+  #hero-section .hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  #hero-section .hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #hero-section .hero-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+  }
+
+  #hero-section .btn-primary,
+  #hero-section .btn-secondary {
+    text-decoration: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+
+  #hero-section .btn-primary {
+    background-color: white;
+    color: #0078ff;
+  }
+
+  #hero-section .btn-primary:hover {
+    background-color: #e6e6e6;
+  }
+
+  #hero-section .btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  #hero-section .btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+</style>
+
+<script>
+  // Example of a simple fade-in animation for the hero content
+  document.addEventListener("DOMContentLoaded", () => {
+    const hero = document.querySelector("#hero-section .hero-content");
+    hero.style.opacity = "0";
+    hero.style.transition = "opacity 1.2s ease";
+    setTimeout(() => {
+      hero.style.opacity = "1";
+    }, 300);
+  });
+</script>

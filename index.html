@@ -1,0 +1,33 @@
+<!--
+PATH: /src/pages/index.html
+PURPOSE: Main orchestrator page responsible for rendering all modular sections of the landing page.
+IMPORTS: /src/sections/header.htm, /src/sections/hero.htm
+EXPORTS: Assembled static landing page for build output.
+NOTES: Uses the comment-driven inclusion model with INCLUDE-SECTION markers (no nested comments allowed).
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Amil Dental Landing Page</title>
+
+    <style>
+      .lp-shell {
+        font-family: system-ui, sans-serif;
+        color: #222;
+        background: #fff;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body class="lp-shell">
+    <!-- INCLUDE-SECTION: src/sections/header.htm -->
+    <!-- INCLUDE-SECTION: src/sections/hero.htm -->
+
+    <!-- FOOTER (optional, future) -->
+  </body>
+</html>
