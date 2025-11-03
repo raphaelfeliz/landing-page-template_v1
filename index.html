@@ -1,34 +1,68 @@
-<!--
-PATH: /src/pages/index.html
-PURPOSE: Main orchestrator page responsible for rendering all modular sections of the landing page.
-IMPORTS: /src/sections/header.htm, /src/sections/hero.htm
-EXPORTS: Assembled static landing page for build output.
-NOTES: Uses the comment-driven inclusion model with INCLUDE-SECTION markers (no nested comments allowed).
--->
+<!--<!--
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amil Dental Landing Page</title>
+PATH: /index.htmlPATH: /src/pages/index.html
 
-    <style>
-      .lp-shell {
-        font-family: system-ui, sans-serif;
-        color: #222;
-        background: #fff;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-  </head>
+PURPOSE: Main orchestrator page responsible for rendering all modular sections of the landing page.PURPOSE: Main orchestrator page responsible for rendering all modular sections of the landing page.
 
-  <body class="lp-shell">
-    <!-- INCLUDE-SECTION: src/sections/header.htm -->
-    <!-- INCLUDE-SECTION: src/sections/hero.htm -->
-    <!-- INCLUDE-SECTION: src/sections/options.htm -->
+IMPORTS: /src/sections/header.htm, /src/sections/hero.htmIMPORTS: /src/sections/header.htm, /src/sections/hero.htm
 
-    <!-- FOOTER (optional, future) -->
-  </body>
-</html>
+EXPORTS: Assembled static landing page for build output.EXPORTS: Assembled static landing page for build output.
+
+NOTES: Uses the comment-driven inclusion model with INCLUDE-SECTION markers (no nested comments allowed).NOTES: Uses the comment-driven inclusion model with INCLUDE-SECTION markers (no nested comments allowed).
+
+-->-->
+
+
+
+<!DOCTYPE html><!DOCTYPE html>
+
+<html lang="en"><html lang="en">
+
+  <head>  <head>
+
+    <meta charset="UTF-8" />    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Amil Dental Landing Page</title>    <title>Amil Dental Landing Page</title>
+
+
+
+    <style>    <style>
+
+      .lp-shell {      .lp-shell {
+
+        font-family: system-ui, sans-serif;        font-family: system-ui, sans-serif;
+
+        color: #222;        color: #222;
+
+        background: #fff;        background: #fff;
+
+        margin: 0;        margin: 0;
+
+        padding: 0;        padding: 0;
+
+      }      }
+
+    </style>    </style>
+
+  </head>  </head>
+
+
+
+  <body class="lp-shell">  <body class="lp-shell">
+
+    <!-- INCLUDE-SECTION: src/sections/header.htm -->    <!-- INCLUDE-SECTION: src/sections/header.htm -->
+
+    <!-- INCLUDE-SECTION: src/sections/hero.htm -->    <!-- INCLUDE-SECTION: src/sections/hero.htm -->
+
+    <!-- INCLUDE-SECTION: src/sections/options.htm -->    <!-- INCLUDE-SECTION: src/sections/options.htm -->
+
+
+
+    <!-- FOOTER (optional, future) -->    <!-- FOOTER (optional, future) -->
+
+  </body>  </body>
+
+</html></html>
+
