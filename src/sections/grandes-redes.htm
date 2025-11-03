@@ -1,0 +1,218 @@
+<style>
+      /* Define a fonte base e um fundo claro para a seção */
+      .grandes-redes-section {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Card styles */
+      .grandes-redes-section .network-card {
+        background: white;
+        border-radius: 1rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border: 1px solid #f3f4f6;
+        overflow: hidden;
+        transition: all 0.3s ease-out;
+      }
+      .grandes-redes-section .network-card:hover {
+        transform: translateY(-0.5rem);
+        box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.2);
+      }
+
+      /* Logo container */
+      .grandes-redes-section .logo-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        height: 10rem;
+        background: white;
+      }
+      .grandes-redes-section .logo-container img {
+        object-fit: contain;
+        height: 100%;
+        width: auto;
+      }
+      .grandes-redes-section .logo-fallback {
+        display: none;
+        font-size: 1.875rem;
+        font-weight: 600;
+        color: #1f2937;
+      }
+
+      /* Stats container */
+      .grandes-redes-section .stats-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 1.5rem;
+        background: white;
+        border-top: 1px solid #f3f4f6;
+        height: 8rem;
+      }
+      .grandes-redes-section .stats-number {
+        font-size: 3rem;
+        font-weight: 800;
+        background: linear-gradient(to right, #2563eb, #06b6d4);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .grandes-redes-section .stats-label {
+        font-size: 1.25rem;
+        font-weight: 500;
+        color: #374151;
+        letter-spacing: -0.025em;
+      }
+
+      /* Section layout */
+      .grandes-redes-section {
+        position: relative;
+        background: linear-gradient(to bottom, white, #eff6ff);
+        padding: 4rem 0;
+        overflow: hidden;
+      }
+      .grandes-redes-section .ambient-glow-bg {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100rem;
+        height: 100rem;
+        background: rgba(219, 234, 254, 0.5);
+        border-radius: 50%;
+        filter: blur(150px);
+        z-index: 0;
+        pointer-events: none;
+      }
+      .grandes-redes-section .content-wrapper {
+        position: relative;
+        z-index: 10;
+        max-width: 80rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      .grandes-redes-section .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .grandes-redes-section .section-title {
+        font-size: 1.875rem;
+        font-weight: 700;
+        color: #111827;
+      }
+      .grandes-redes-section .title-highlight {
+        background: linear-gradient(to right, #2563eb, #06b6d4);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .grandes-redes-section .cards-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      @media (min-width: 640px) {
+        .grandes-redes-section .content-wrapper {
+          padding: 0 1.5rem;
+        }
+      }
+      @media (min-width: 768px) {
+        .grandes-redes-section {
+          padding: 6rem 0;
+        }
+        .grandes-redes-section .section-header {
+          margin-bottom: 4rem;
+        }
+        .grandes-redes-section .section-title {
+          font-size: 2.25rem;
+        }
+        .grandes-redes-section .cards-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+        }
+        .grandes-redes-section .stats-number {
+          font-size: 3.75rem;
+        }
+      }
+      @media (min-width: 1024px) {
+        .grandes-redes-section .content-wrapper {
+          padding: 0 2rem;
+        }
+        .grandes-redes-section .section-title {
+          font-size: 3rem;
+        }
+      }
+    </style>
+
+  <!-- 
+    ================================================================================
+    SEÇÃO REDES PARCEIRAS (TEMA CLARO REDESENHADO)
+    ================================================================================
+  -->
+  <section class="grandes-redes-section">
+    <!-- Efeito de brilho de fundo sutil -->
+    <div class="ambient-glow-bg" aria-hidden="true"></div>
+
+    <div class="content-wrapper">
+      
+      <!-- Cabeçalho da Seção -->
+      <header class="section-header">
+        <h2 class="section-title">
+          Você usa Amil nas 
+          <span class="title-highlight">grandes redes</span>
+        </h2>
+      </header>
+      
+      <!-- Grid de Logos (Mobile-first) -->
+      <div class="cards-grid">
+        
+        <!-- Card 1: OdontoCompany -->
+        <div class="network-card">
+          
+          <!-- Seção Superior do Logo (Fundo Branco) -->
+          <div class="logo-container">
+            <img src="https://images.seeklogo.com/logo-png/44/2/odonto-company-logo-png_seeklogo-444750.png" 
+                 alt="Logo OdontoCompany"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <!-- Fallback de texto -->
+            <span class="logo-fallback">OdontoCompany</span>
+          </div>
+          
+          <!-- Seção Inferior dos Números (Altura Reduzida) -->
+          <div class="stats-container">
+            <span class="stats-number">+1400</span>
+            <span class="stats-label">unidades</span>
+          </div>
+        </div>
+        
+        <!-- Card 2: Sorridents -->
+        <div class="network-card">
+          
+          <!-- Seção Superior do Logo (Fundo Branco) -->
+          <div class="logo-container">
+            <img src="https://franquias360.com.br/wp-content/uploads/2024/08/franquia-sorridents-logo.jpg" 
+                 alt="Logo Sorridents"
+                 loading="lazy"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <!-- Fallback de texto -->
+            <span class="logo-fallback">Sorridents</span>
+          </div>
+          
+          <!-- Seção Inferior dos Números (Altura Reduzida) -->
+          <div class="stats-container">
+            <span class="stats-number">+500</span>
+            <span class="stats-label">unidades</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- FIM DA SEÇÃO REDES PARCEIRAS -->
+
+

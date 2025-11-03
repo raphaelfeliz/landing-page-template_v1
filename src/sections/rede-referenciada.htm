@@ -1,0 +1,325 @@
+<style>
+      /* Define a fonte base e o fundo escuro para toda a página */
+      .features-network-section {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: #111827;
+      }
+
+      /* Estilo reutilizável para os cartões de "vidro" (glassmorphism) */
+      .glass-card {
+        background: rgba(31, 41, 55, 0.6);
+        -webkit-backdrop-filter: blur(16px);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 0.75rem;
+        padding: 1rem 1.25rem;
+        transition: all 0.3s ease-out;
+      }
+      .glass-card:hover {
+        transform: translateY(-0.25rem);
+        box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.2);
+        border-color: rgba(255, 255, 255, 0.3);
+      }
+      
+      /* Estilos para os botões CTA (fundo escuro) */
+      .btn-primary-cta {
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        color: white;
+        background: linear-gradient(90deg, #3b82f6, #22d3ee);
+        transition: all 0.3s ease-out;
+        display: inline-block;
+        text-decoration: none;
+      }
+      .btn-primary-cta:hover {
+        box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+        filter: brightness(1.1);
+      }
+      
+      .btn-secondary-cta {
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        color: #d1d5db;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.3s ease-out;
+        display: inline-block;
+        text-decoration: none;
+      }
+      .btn-secondary-cta:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        border-color: rgba(255, 255, 255, 0.5);
+      }
+      
+      /* Acessibilidade: Reduzir movimento */
+      @media (prefers-reduced-motion: reduce) {
+        .glass-card,
+        .btn-primary-cta,
+        .btn-secondary-cta {
+          transition-property: none;
+          transform: none;
+        }
+      }
+
+      /* Utility classes matching Tailwind */
+      .features-network-section .text-center { text-align: center; }
+      .features-network-section .max-w-3xl { max-width: 48rem; }
+      .features-network-section .max-w-7xl { max-width: 80rem; }
+      .features-network-section .mx-auto { margin-left: auto; margin-right: auto; }
+      .features-network-section .mb-4 { margin-bottom: 1rem; }
+      .features-network-section .mb-12 { margin-bottom: 3rem; }
+      .features-network-section .lg\\:mb-16 { margin-bottom: 4rem; }
+      .features-network-section .mt-4 { margin-top: 1rem; }
+      .features-network-section .mb-3 { margin-bottom: 0.75rem; }
+      .features-network-section .mb-1 { margin-bottom: 0.25rem; }
+      .features-network-section .mr-3 { margin-right: 0.75rem; }
+      .features-network-section .mt-1 { margin-top: 0.25rem; }
+      .features-network-section .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      .features-network-section .py-1-5 { padding-top: 0.375rem; padding-bottom: 0.375rem; }
+      .features-network-section .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+      .features-network-section .md\\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+      .features-network-section .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+      .features-network-section .lg\\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+      .features-network-section .text-xs { font-size: 0.75rem; line-height: 1rem; }
+      .features-network-section .text-sm { font-size: 0.875rem; line-height: 1.25rem; }
+      .features-network-section .text-base { font-size: 1rem; line-height: 1.5rem; }
+      .features-network-section .text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+      .features-network-section .text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+      .features-network-section .md\\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+      .features-network-section .lg\\:text-5xl { font-size: 3rem; line-height: 1; }
+      .features-network-section .font-semibold { font-weight: 600; }
+      .features-network-section .font-bold { font-weight: 700; }
+      .features-network-section .uppercase { text-transform: uppercase; }
+      .features-network-section .tracking-wider { letter-spacing: 0.05em; }
+      .features-network-section .text-white { color: white; }
+      .features-network-section .text-gray-300 { color: #d1d5db; }
+      .features-network-section .text-gray-400 { color: #9ca3af; }
+      .features-network-section .text-cyan-400 { color: #22d3ee; }
+      .features-network-section .text-blue-400 { color: #60a5fa; }
+      .features-network-section .text-transparent { color: transparent; }
+      .features-network-section .bg-clip-text { -webkit-background-clip: text; background-clip: text; }
+      .features-network-section .bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+      .features-network-section .from-blue-500 { --tw-gradient-from: #3b82f6; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(59, 130, 246, 0)); }
+      .features-network-section .to-cyan-400 { --tw-gradient-to: #22d3ee; }
+      .features-network-section .from-blue-400 { --tw-gradient-from: #60a5fa; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(96, 165, 250, 0)); }
+      .features-network-section .rounded-full { border-radius: 9999px; }
+      .features-network-section .inline-block { display: inline-block; }
+      .features-network-section .flex { display: flex; }
+      .features-network-section .flex-col { flex-direction: column; }
+      .features-network-section .sm\\:flex-row { flex-direction: row; }
+      .features-network-section .items-start { align-items: flex-start; }
+      .features-network-section .gap-4 { gap: 1rem; }
+      .features-network-section .gap-8 { gap: 2rem; }
+      .features-network-section .md\\:gap-10 { gap: 2.5rem; }
+      .features-network-section .space-y-3 > * + * { margin-top: 0.75rem; }
+      .features-network-section .grid { display: grid; }
+      .features-network-section .grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .features-network-section .relative { position: relative; }
+      .features-network-section .absolute { position: absolute; }
+      .features-network-section .overflow-hidden { overflow: hidden; }
+      .features-network-section .z-10 { z-index: 10; }
+      .features-network-section .flex-shrink-0 { flex-shrink: 0; }
+      .features-network-section .w-5 { width: 1.25rem; }
+      .features-network-section .h-5 { height: 1.25rem; }
+      .features-network-section .w-10 { width: 2.5rem; }
+      .features-network-section .h-10 { height: 2.5rem; }
+      
+      /* SVG icon container */
+      .icon-defs {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+      
+      /* Ambient glow effects */
+      .ambient-glow-top {
+        position: absolute;
+        top: 25%;
+        left: 0;
+        width: 50rem;
+        height: 50rem;
+        background: rgba(37, 99, 235, 0.2);
+        border-radius: 50%;
+        filter: blur(150px);
+        opacity: 0.3;
+        z-index: 0;
+        pointer-events: none;
+      }
+      .ambient-glow-bottom {
+        position: absolute;
+        bottom: 25%;
+        right: 0;
+        width: 50rem;
+        height: 50rem;
+        background: rgba(6, 182, 212, 0.2);
+        border-radius: 50%;
+        filter: blur(150px);
+        opacity: 0.3;
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      @media (min-width: 640px) {
+        .features-network-section .sm\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .features-network-section .sm\\:flex-row { flex-direction: row; }
+      }
+      @media (min-width: 768px) {
+        .features-network-section .md\\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+        .features-network-section .md\\:py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+        .features-network-section .md\\:gap-10 { gap: 2.5rem; }
+      }
+      @media (min-width: 1024px) {
+        .features-network-section .lg\\:text-5xl { font-size: 3rem; line-height: 1; }
+        .features-network-section .lg\\:px-8 { padding-left: 2rem; padding-right: 2rem; }
+        .features-network-section .lg\\:mb-16 { margin-bottom: 4rem; }
+      }
+    </style>
+
+  <!-- 
+    ================================================================================
+    SEÇÃO DE RECURSOS (FEATURES) - TEMA ESCURO
+    ================================================================================
+    Esta seção se concentra em provar a amplitude, praticidade e suporte da rede,
+    usando o mesmo tema "dark + glass" do herói para uma continuação natural.
+  -->
+  <section class="features-network-section relative text-white font-sans overflow-hidden py-16 md:py-24">
+  
+    <!-- 
+      SVG Icons Definition
+      Definindo os ícones em um <svg> oculto para reutilização limpa (similar ao seu <symbol id="icon-check">)
+    -->
+    <svg class="icon-defs" aria-hidden="true">
+      <symbol id="icon-feat-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </symbol>
+      <symbol id="icon-feat-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+        <line x1="1" y1="10" x2="23" y2="10"></line>
+      </symbol>
+      <symbol id="icon-feat-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </symbol>
+      <symbol id="icon-feat-medical" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+        <path d="M3.4 15H15"></path>
+      </symbol>
+      <symbol id="icon-feat-headset" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path>
+      </symbol>
+    </svg>
+  
+    <!-- 
+      Efeitos de Brilho Ambiente (Ambient Glow Effects)
+      Elipses desfocadas posicionadas atrás do conteúdo para dar profundidade.
+    -->
+    <div class="ambient-glow-top" aria-hidden="true"></div>
+    <div class="ambient-glow-bottom" aria-hidden="true"></div>
+  
+    <!-- Container de Conteúdo Principal -->
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  
+      <!-- 1. Cabeçalho da Seção -->
+      <header class="text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+        <!-- Eyebrow Pill -->
+        <span class="inline-block bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full px-4 py-1-5 text-xs font-semibold text-white uppercase tracking-wider mb-4">
+          Rede Referenciada Amil
+        </span>
+        
+        <!-- 
+          Título Principal (H2)
+        -->
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-white">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Na Amil,</span> é fácil encontrar ótimos dentistas.
+        </h2>
+        
+        <!-- Subcopy -->
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+          Você conta com uma rede ampla, apoio ao paciente e parcerias com grandes clínicas. Sem burocracia, do agendamento ao atendimento.
+        </p>
+      </header>
+  
+      <!-- 
+        2. Miolo de Conteúdo (Centralizado)
+      -->
+      <div class="max-w-3xl mx-auto">
+  
+        <!-- Conteúdo: Provas Rápidas + Selling Points -->
+        <div class="flex flex-col gap-8 md:gap-10">
+          
+          <!-- A. Bullets de Prova -->
+          <ul class="space-y-3">
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0 mt-1" aria-hidden="true">
+                <use href="#icon-feat-check"></use>
+              </svg>
+              <span class="text-base text-gray-300">Rede ampla e qualificada em capitais e interiores</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0 mt-1" aria-hidden="true">
+                <use href="#icon-feat-check"></use>
+              </svg>
+              <span class="text-base text-gray-300">Apoio ao paciente durante todo o tratamento</span>
+            </li>
+            <li class="flex items-start">
+              <svg class="w-5 h-5 text-cyan-400 mr-3 flex-shrink-0 mt-1" aria-hidden="true">
+                <use href="#icon-feat-check"></use>
+              </svg>
+              <span class="text-base text-gray-300">Grandes redes parceiras reconhecidas nacionalmente</span>
+            </li>
+          </ul>
+  
+          <!-- B. Selling Points (2x2 Tiles de Vidro) -->
+          <div class="grid grid-cols-2 gap-4">
+            
+            <!-- Tile 1: Contratação Online -->
+            <div class="glass-card group">
+              <svg class="w-10 h-10 text-blue-400 mb-3" aria-hidden="true"><use href="#icon-feat-card"></use></svg>
+              <h4 class="font-semibold text-white mb-1">Contratação Online</h4>
+              <p class="text-sm text-gray-400">sem burocracia</p>
+            </div>
+            
+            <!-- Tile 2: Use Amanhã -->
+            <div class="glass-card group">
+              <svg class="w-10 h-10 text-blue-400 mb-3" aria-hidden="true"><use href="#icon-feat-clock"></use></svg>
+              <h4 class="font-semibold text-white mb-1">Use Amanhã</h4>
+              <p class="text-sm text-gray-400">pagando no boleto ou cartão</p>
+            </div>
+            
+            <!-- Tile 3: Pronto Socorro -->
+            <div class="glass-card group">
+              <svg class="w-10 h-10 text-blue-400 mb-3" aria-hidden="true"><use href="#icon-feat-medical"></use></svg>
+              <h4 class="font-semibold text-white mb-1">Pronto Socorro Odonto</h4>
+              <p class="text-sm text-gray-400">24h por dia</p>
+            </div>
+            
+            <!-- Tile 4: Central de Atendimento -->
+            <div class="glass-card group">
+              <svg class="w-10 h-10 text-blue-400 mb-3" aria-hidden="true"><use href="#icon-feat-headset"></use></svg>
+              <h4 class="font-semibold text-white mb-1">Central de Atendimento</h4>
+              <p class="text-sm text-gray-400">24h por dia</p>
+            </div>
+          </div>
+          
+          <!-- C. CTAs Duplos -->
+          <div class="flex flex-col sm:flex-row gap-4 mt-4">
+            <a href="#" class="btn-primary-cta text-center">
+              Encontrar dentista agora
+            </a>
+            <a href="#" class="btn-secondary-cta text-center">
+              Ver rede completa
+            </a>
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </div>
+    
+  </section>
+  <!-- FIM DA SEÇÃO DE RECURSOS -->
+
