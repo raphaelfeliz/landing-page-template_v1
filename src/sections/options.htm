@@ -1,674 +1,301 @@
-<
-  
-  <style>
-    /* Configure Tailwind to use Inter font */
-    body {
-      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-      background-color: #111827;
-      min-height: 100vh;
-    }
 
-    /* Custom styles merged from OptionsSection.css */
-    .options-to-pick {
-      position: relative;
-      overflow: hidden;
-      background-color: #111827;
-      padding-top: 4rem;
-      padding-bottom: 4rem;
-    }
-
-    @media (min-width: 640px) {
-      .options-to-pick {
-        padding-top: 6rem;
-        padding-bottom: 6rem;
+<head>
+    <!-- Load Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+      /* Apply the Inter font family */
+      .font-sans {
+        font-family: 'Inter', sans-serif;
       }
-    }
-
-    .options-bg-effect {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      height: 800px;
-      width: 800px;
-      transform: translateX(-50%) translateY(-50%);
-      border-radius: 9999px;
-      background-color: rgba(3, 7, 18, 0.5);
-      opacity: 0.3;
-      filter: blur(48px);
-      z-index: 0;
-    }
-
-    .options-container {
-      position: relative;
-      z-index: 10;
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 80rem;
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-
-    @media (min-width: 640px) {
-      .options-container {
-        padding-left: 1.5rem;
-        padding-right: 1.5rem;
+      /* Custom background image for highlight-image-col */
+      .highlight-image-col {
+        background-image: url('https://www.kindpng.com/picc/m/30-305292_people-family-taking-photos-family-png-transparent-png.png');
+        background-size: cover;
+        background-position: center;
+        /* Ensure the image is visible through the overlay */
+        position: relative; 
       }
-    }
-
-    @media (min-width: 1024px) {
-      .options-container {
-        padding-left: 2rem;
-        padding-right: 2rem;
+      /* Adjust overlay opacity to make image show through but keep text readable */
+      .highlight-image-overlay-adjusted {
+        background-image: linear-gradient(to top, rgba(17, 24, 39, 0.8), rgba(0,0,0,0)); /* More opaque at bottom */
       }
-    }
-
-    /* Section Header Styles */
-    .options-header {
-      margin-left: auto;
-      margin-right: auto;
-      max-width: 48rem;
-      text-align: center;
-    }
-
-    .options-header-subtitle {
-      font-size: 0.875rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #22d3ee;
-    }
-
-    .options-header-title {
-      margin-top: 0.5rem;
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: #ffffff;
-    }
-
-    @media (min-width: 640px) {
-      .options-header-title {
-        font-size: 3rem;
+      @media (min-width: 768px) {
+        .highlight-image-overlay-adjusted {
+          background-image: linear-gradient(to left, rgba(17, 24, 39, 0.8), rgba(0,0,0,0)); /* More opaque on left for desktop */
+        }
       }
-    }
 
-    .options-header-description {
-      margin-top: 1rem;
-      font-size: 1.125rem;
-      color: #d1d5db;
-    }
-
-    /* Highlighted Plan Card Styles */
-    .options-highlight-wrapper {
-      margin-top: 4rem;
-    }
-
-    .highlighted-plan-card {
-      position: relative;
-      margin-bottom: 4rem;
-      border-radius: 1.5rem;
-      border: 1px solid rgba(96, 165, 250, 0.5);
-      background-color: rgba(31, 41, 55, 0.6);
-      backdrop-filter: blur(16px);
-    }
-
-    .highlighted-plan-card-glow {
-      position: absolute;
-      inset: 0;
-      z-index: -10;
-      border-radius: 1.5rem;
-      background-image: linear-gradient(to right, #3b82f6, #06b6d4);
-      opacity: 0.1;
-      filter: blur(24px);
-    }
-
-    .highlight-content-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 768px) {
-      .highlight-content-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    .highlight-image-column {
-      position: relative;
-      min-height: 300px;
-      overflow: hidden;
-      border-top-left-radius: 1.5rem;
-      border-top-right-radius: 1.5rem;
-    }
-
-    @media (min-width: 768px) {
-      .highlight-image-column {
-        min-height: 100%;
-        border-top-right-radius: 0;
-        border-bottom-left-radius: 1.5rem;
-      }
-    }
-
-    .highlighted-plan-image {
-      position: absolute;
-      height: 100%;
-      width: 100%;
-      object-fit: cover;
-    }
-
-    .highlighted-plan-image-overlay {
-      position: absolute;
-      inset: 0;
-      background-image: linear-gradient(to top, rgba(31, 41, 55, 0.5), transparent);
-    }
-
-    @media (min-width: 768px) {
-      .highlighted-plan-image-overlay {
-        background-image: linear-gradient(to right, rgba(31, 41, 55, 0.5), transparent);
-      }
-    }
-
-    .highlight-text-column {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      padding: 2rem;
-    }
-
-    @media (min-width: 1024px) {
-      .highlight-text-column {
-        padding: 3rem;
-      }
-    }
-
-    .highlight-badge {
-      position: absolute;
-      top: -1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 20;
-      border-radius: 9999px;
-      background-image: linear-gradient(to right, #3b82f6, #06b6d4);
-      padding: 0.25rem 1rem;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: #ffffff;
-    }
-
-    @media (min-width: 768px) {
-      .highlight-badge {
-        left: auto;
-        right: 2rem;
-        transform: translateX(0);
-      }
-    }
-
-    .highlighted-plan-text-content {
-      flex-grow: 1;
-    }
-
-    .highlighted-plan-title {
-      margin-bottom: 0.25rem;
-      margin-top: 1rem;
-      font-size: 1.875rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .highlighted-plan-audience {
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-      color: #9ca3af;
-    }
-
-    /* Price Styles */
-    .price-wrapper {
-      margin-bottom: 1.5rem;
-    }
-
-    .price-currency {
-      vertical-align: top;
-      font-size: 1.25rem;
-      font-weight: 500;
-      color: #9ca3af;
-    }
-
-    .price-amount-large {
-      margin: 0 0.25rem;
-      font-size: 3rem;
-      font-weight: 800;
-      color: #ffffff;
-    }
-
-    .price-suffix {
-      color: #9ca3af;
-    }
-
-    /* Features List Styles */
-    .highlight-features-list,
-    .plan-card-features-list {
-      margin-bottom: 2rem;
-      list-style: none;
-      padding: 0;
-    }
-
-    .feature-item-large,
-    .feature-item {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 0.75rem;
-    }
-
-    .feature-icon {
-      height: 1.25rem;
-      width: 1.25rem;
-      flex-shrink: 0;
-      color: #22d3ee;
-    }
-
-    .feature-text-large {
-      font-size: 1.125rem;
-      color: #d1d5db;
-    }
-
-    .feature-text {
-      color: #d1d5db;
-    }
-
-    /* CTA Button Styles */
-    .cta-button-highlighted {
-      margin-top: auto;
-      display: block;
-      width: 100%;
-      border-radius: 0.5rem;
-      background-color: #374151;
-      padding: 1rem 1.5rem;
-      text-align: center;
-      font-size: 1.125rem;
-      font-weight: 600;
-      color: #ffffff;
-      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-    }
-
-    .highlighted-plan-card:hover .cta-button-highlighted {
-      background-image: linear-gradient(to right, #3b82f6, #06b6d4);
-      box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -4px rgba(59, 130, 246, 0.3);
-    }
-
-    /* Standard Plan Card Styles */
-    .plan-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-      border-radius: 1.5rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      background-color: rgba(31, 41, 55, 0.6);
-      padding: 2rem;
-      backdrop-filter: blur(16px);
-      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .plan-card:hover {
-      box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.2), 0 8px 10px -6px rgba(59, 130, 246, 0.2);
-    }
-
-    .plan-card-content {
-      flex-grow: 1;
-    }
-
-    .plan-card-title {
-      margin-bottom: 0.25rem;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-
-    .plan-card-audience {
-      margin-bottom: 1.5rem;
-      font-size: 0.875rem;
-      color: #9ca3af;
-    }
-
-    .cta-button-standard {
-      margin-top: auto;
-      display: block;
-      width: 100%;
-      border-radius: 0.5rem;
-      padding: 0.75rem 1.5rem;
-      text-align: center;
-      font-size: 1rem;
-      font-weight: 600;
-      background-color: #374151;
-      color: #ffffff;
-      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
-      text-decoration: none;
-    }
-
-    .plan-card:hover .cta-button-standard {
-      background-image: linear-gradient(to right, #3b82f6, #06b6d4);
-      box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2), 0 4px 6px -4px rgba(59, 130, 246, 0.2);
-    }
-
-    /* Disclaimer & Grid Styles */
-    .options-disclaimer {
-      margin-top: 4rem;
-      text-align: center;
-      font-size: 0.875rem;
-      color: #6b7280;
-    }
-
-    .options-grid-title {
-      margin-top: 4rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      font-size: 1.875rem;
-      font-weight: 700;
-      color: #ffffff;
-    }
-
-    .options-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    @media (min-width: 768px) {
-      .options-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (min-width: 1024px) {
-      .options-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-    }
-  </style>
+    </style>
 </head>
-<body>
-  <!-- Options Section -->
-  <section id="options-to-pick" class="options-to-pick">
-    <!-- Background Effect -->
-    <div class="options-bg-effect"></div>
+<section class="bg-[#111827]">
+  <!-- 
+    This is the complete HTML for the "options-section".
+    It assumes Tailwind CSS is already included in your project.
+  --><!-- Checkmark Icon SVG Definition --><svg aria-hidden="true" style="display: none;">
+    <symbol id="icon-check" viewBox="0 0 20 20" fill="currentColor">
+      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+    </symbol>
+  </svg>
 
-    <div class="options-container">
-      <!-- Section Header -->
-      <div class="options-header">
-        <h2 class="options-header-subtitle">
+  <!-- Main Plans Section --><section class="options-section relative w-full bg-[#111827] text-white py-16 md:py-24 overflow-hidden font-sans">
+    
+    <!-- Subtle Background Gradient Effect --><div class="options-bg-effect absolute inset-0 m-auto w-2/3 h-2/3 bg-blue-900/20 blur-[150px] rounded-full -z-0"></div>
+
+    <!-- Centered Content Container --><div class="options-container relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <!-- 1. Header --><header class="options-header text-center max-w-3xl mx-auto mb-12 lg:mb-16">
+        <p class="options-subtitle text-sm font-semibold uppercase tracking-wider text-[#22d3ee] mb-2">
           Nossos Planos
-        </h2>
-        <p class="options-header-title">
-          Escolha a proteção ideal para seu sorriso.
         </p>
-        <p class="options-header-description">
+        <h2 class="options-title text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+          Escolha a proteção ideal para seu sorriso.
+        </h2>
+        <p class="options-description text-lg text-[#d1d5db]">
           Dos cuidados essenciais aos tratamentos estéticos mais avançados, temos o plano perfeito para você e sua família.
         </p>
-      </div>
+      </header>
 
-      <!-- Highlighted Card Wrapper -->
-      <div class="options-highlight-wrapper">
-        <!-- Highlighted Plan Card (DENTAL 205) -->
-        <div class="highlighted-plan-card">
-          <!-- Subtle glow -->
-          <div class="highlighted-plan-card-glow"></div>
+      <!-- 2. Highlighted Plan --><div class="highlight-wrapper relative mb-8">
+        
+        <!-- Badge: "Mais Recomendado" --><div class="highlight-badge absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 md:left-auto md:right-6 md:translate-x-0 z-20 px-4 py-1.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-500 to-cyan-400 rounded-full whitespace-nowrap">
+          Mais Recomendado
+        </div>
+
+        <!-- Highlight Card --><div class="highlight-card group relative z-10 bg-gray-800/60 backdrop-blur-lg border border-blue-500/50 rounded-2xl overflow-hidden">
           
-          <div class="highlight-content-grid">
-            
-            <!-- Left Column: Image -->
-            <div class="highlight-image-column">
-              <img
-                src="https://placehold.co/600x600/0ea5e9/ffffff?text=Fam%C3%ADlia+Sorrindo&font=inter"
-                alt="Smiling family"
-                class="highlighted-plan-image"
-              />
-              <div class="highlighted-plan-image-overlay"></div>
+          <!-- Card Grid (1 col on mobile, 2 cols on desktop) --><div class="highlight-grid grid grid-cols-1 md:grid-cols-2">
+
+            <!-- Image Column with Background Image --><div class="highlight-image-col relative w-full h-64 md:h-auto rounded-t-2xl md:rounded-tr-none md:rounded-l-2xl overflow-hidden">
+              <!-- Image Overlay (fades from bottom on mobile, from right on desktop) --><div class="highlight-image-overlay absolute inset-0 bg-gradient-to-t from-gray-900/70 to-transparent md:bg-gradient-to-l md:from-gray-900/70 md:to-transparent"></div>
+              
+              <!-- Text for Image (positioned within the image column, now inside a card-like element) --><div class="absolute bottom-4 left-4 right-4 text-white md:left-8 md:right-8 md:bottom-8 z-10">
+                <div class="bg-black/40 p-3 rounded-lg inline-block"> <!-- Card-like element added here --><p class="font-bold text-lg md:text-2xl text-cyan-300">DENTAL 205</p>
+                  <p class="text-sm md:text-base text-gray-200">nacional | pessoa física | familiares</p>
+                </div>
+              </div>
             </div>
 
-            <!-- Right Column: Content -->
-            <div class="highlight-text-column">
-              <!-- "Most Recommended" badge -->
-              <div class="highlight-badge">
-                Mais Recomendado
-              </div>
+            <!-- Text Column --><div class="highlight-text-col p-8 md:p-12 flex flex-col">
+              <h3 class="text-2xl font-bold text-white">DENTAL 205</h3>
+              <p class="text-base text-blue-300/80 mb-4">Nacional / Pessoas físicas ou familiares</p>
               
-              <div class="highlighted-plan-text-content">
-                <h3 class="highlighted-plan-title">DENTAL 205</h3>
-                <p class="highlighted-plan-audience">Nacional / Pessoas físicas ou familiares</p>
-
-                <div class="price-wrapper">
-                  <span class="price-currency">R$</span>
-                  <span class="price-amount-large">42,50</span>
-                  <span class="price-suffix">/mês (p/ 3+ pessoas)</span>
-                </div>
-
-                <ul class="highlight-features-list">
-                  <li class="feature-item-large">
-                    <!-- Check Icon SVG -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                      <path d="M20 6 9 17l-5-5"/>
-                    </svg>
-                    <span class="feature-text-large">Consultas, limpezas, radiografias</span>
-                  </li>
-                  <li class="feature-item-large">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                      <path d="M20 6 9 17l-5-5"/>
-                    </svg>
-                    <span class="feature-text-large">Extração de siso e tratamento de canal</span>
-                  </li>
-                  <li class="feature-item-large">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                      <path d="M20 6 9 17l-5-5"/>
-                    </svg>
-                    <span class="feature-text-large">Documentação ortodontica básica</span>
-                  </li>
-                </ul>
+              <div class="price-amount text-5xl md:text-6xl font-extrabold text-white my-2">
+                R$ 42,50 <span class="text-xl font-normal text-gray-300">/mês</span>
               </div>
+              <p class="text-sm text-gray-400 mb-2">(p/ 3+ pessoas)</p>
               
-              <!-- Highlighted Button -->
-              <a href="#" class="cta-button-highlighted">
+              <!-- New Tag: Lista de Tratamentos com início em 24h --><span class="text-sm font-semibold text-blue-200 bg-blue-800/50 px-3 py-1 rounded-full w-fit mb-4">
+                Lista de Tratamentos com início em 24h
+              </span>
+
+              <ul class="features-list space-y-3 my-6 flex-grow">
+                <li class="flex items-start">
+                  <svg class="feature-icon w-5 h-5 text-[#22d3ee] mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <use href="#icon-check"></use>
+                  </svg>
+                  <span class="text-[#d1d5db]">Consultas, limpas, radiografias</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="feature-icon w-5 h-5 text-[#22d3ee] mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <use href="#icon-check"></use>
+                  </svg>
+                  <span class="text-[#d1d5db]">Extração de siso e tratamento de canal</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="feature-icon w-5 h-5 text-[#22d3ee] mr-3 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                    <use href="#icon-check"></use>
+                  </svg>
+                  <span class="text-[#d1d5db]">Documentação ortodontica básica</span>
+                </li>
+              </ul>
+
+              <!-- CTA Button --><a href="#" class="cta-button cta-button-highlight block w-full mt-auto bg-[#374151] text-white font-semibold py-3 px-6 rounded-lg text-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-cyan-400 group-hover:shadow-lg group-hover:shadow-blue-500/30">
                 Contratar Agora
               </a>
             </div>
+            
           </div>
         </div>
       </div>
 
-      <!-- Disclaimer/Notice -->
-      <div class="options-disclaimer">
-        <p>† Valores "a partir de" baseados em revendedores e podem variar por localidade, forma de pagamento ou condições específicas. Verifique o contrato.</p>
-      </div>
+      <!-- 3. Disclaimer --><p class="options-disclaimer text-xs text-[#6b7280] text-center max-w-lg mx-auto mb-12 lg:mb-16">
+        † Valores "a partir de" baseados em revendedores e podem variar por localidade, forma de pagamento ou condições específicas. Verifique o contrato.
+      </p>
 
-      <!-- Title for Other Plans Grid -->
-      <h3 class="options-grid-title">
+      <!-- 4. Other Plans Grid --><!-- Grid Title --><h3 class="options-grid-title text-2xl md:text-3xl font-bold text-white text-center mb-8">
         Outras Opções de Planos
       </h3>
 
-      <!-- Plans Grid -->
-      <div class="options-grid">
-        
-        <!-- Plan Card: DENTAL KIDS K25 -->
-        <div class="plan-card">
-          <div class="plan-card-content">
-            <h3 class="plan-card-title">DENTAL KIDS K25</h3>
-            <p class="plan-card-audience">Nacional / Crianças de 0 a 13 anos</p>
-            <div class="price-wrapper">
-              <span class="price-currency">R$</span>
-              <span class="price-amount-large">32,89</span>
-              <span class="price-suffix">/mês</span>
+      <!-- Grid (1 col, then 2, then 3) --><div class="options-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+
+        <!-- Plan Card 1: DENTAL KIDS K25 --><div class="plan-card group bg-gray-800/60 backdrop-blur-lg border border-white/20 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30">
+          <div class="plan-card-content flex-grow">
+            <h4 class="text-xl font-bold text-white">DENTAL KIDS K25</h4>
+            <p class="text-sm text-blue-300/80 mb-3">Nacional / Crianças de 0 a 13 anos</p>
+            <div class="text-2xl font-bold text-white my-2">
+              R$ 32,89 <span class="text-base font-normal text-gray-300">/mês</span>
             </div>
-            <ul class="plan-card-features-list">
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+            <ul class="space-y-2 my-4 text-sm">
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Cobertura clínica para infância</span>
+                <span class="text-[#d1d5db]">Cobertura clínica para infância</span>
               </li>
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Consultas de rotina e aplicação de flúor</span>
+                <span class="text-[#d1d5db]">Consultas de rotina e aplicação de flúor</span>
               </li>
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Focado em prevenção</span>
+                <span class="text-[#d1d5db]">Focado em prevenção</span>
               </li>
             </ul>
           </div>
-          <a href="#" class="cta-button-standard">
+          <a href="#" class="cta-button cta-button-standard block w-full mt-8 bg-[#374151] text-white font-semibold py-3 px-6 rounded-lg text-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-cyan-400 group-hover:shadow-lg group-hover:shadow-blue-500/30">
             Contratar Agora
           </a>
         </div>
 
-        <!-- Plan Card: E50 – Clareamento -->
-        <div class="plan-card">
-          <div class="plan-card-content">
-            <h3 class="plan-card-title">E50 – Clareamento</h3>
-            <p class="plan-card-audience">Nacional / Linha estética</p>
-            <div class="price-wrapper">
-              <span class="price-currency">R$</span>
-              <span class="price-amount-large">75,94</span>
-              <span class="price-suffix">/mês</span>
+        <!-- Plan Card 2: E50 – Clareamento --><div class="plan-card group bg-gray-800/60 backdrop-blur-lg border border-white/20 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30">
+          <div class="plan-card-content flex-grow">
+            <h4 class="text-xl font-bold text-white">E50 – Clareamento</h4>
+            <p class="text-sm text-blue-300/80 mb-3">Nacional / Linha estética</p>
+            <div class="text-2xl font-bold text-white my-2">
+              R$ 75,94 <span class="text-base font-normal text-gray-300">/mês</span>
             </div>
-            <ul class="plan-card-features-list">
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+            <ul class="space-y-2 my-4 text-sm">
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Cobertura clínica básica</span>
+                <span class="text-[#d1d5db]">Cobertura clínica básica</span>
               </li>
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Clareamento dental (gel + moldeiras)</span>
+                <span class="text-[#d1d5db]">Clareamento dental (gel + moldeiras)</span>
               </li>
             </ul>
           </div>
-          <a href="#" class="cta-button-standard">
+          <a href="#" class="cta-button cta-button-standard block w-full mt-8 bg-[#374151] text-white font-semibold py-3 px-6 rounded-lg text-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-cyan-400 group-hover:shadow-lg group-hover:shadow-blue-500/30">
             Contratar Agora
           </a>
         </div>
 
-        <!-- Plan Card: E80 – Ortodontia -->
-        <div class="plan-card">
-          <div class="plan-card-content">
-            <h3 class="plan-card-title">E80 – Ortodontia</h3>
-            <p class="plan-card-audience">Nacional / Linha estética - ortodontia</p>
-            <div class="price-wrapper">
-              <span class="price-currency">R$</span>
-              <span class="price-amount-large">99,11</span>
-              <span class="price-suffix">/mês</span>
+        <!-- Plan Card 3: E80 – Ortodontia --><div class="plan-card group bg-gray-800/60 backdrop-blur-lg border border-white/20 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30">
+          <div class="plan-card-content flex-grow">
+            <h4 class="text-xl font-bold text-white">E80 – Ortodontia</h4>
+            <p class="text-sm text-blue-300/80 mb-3">Nacional / Linha estética - ortodontia</p>
+            <div class="text-2xl font-bold text-white my-2">
+              R$ 99,11 <span class="text-base font-normal text-gray-300">/mês</span>
             </div>
-            <ul class="plan-card-features-list">
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+            <ul class="space-y-2 my-4 text-sm">
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Cobertura clínica completa</span>
+                <span class="text-[#d1d5db]">Cobertura clínica completa</span>
               </li>
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Instalação e manutenção de aparelho</span>
+                <span class="text-[#d1d5db]">Instalação e manutenção de aparelho</span>
               </li>
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+               <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Clareamento incluso</span>
+                <span class="text-[#d1d5db]">Clareamento incluso</span>
               </li>
             </ul>
           </div>
-          <a href="#" class="cta-button-standard">
+          <a href="#" class="cta-button cta-button-standard block w-full mt-8 bg-[#374151] text-white font-semibold py-3 px-6 rounded-lg text-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-cyan-400 group-hover:shadow-lg group-hover:shadow-blue-500/30">
             Contratar Agora
           </a>
         </div>
 
-        <!-- Plan Card: E90 – Prótese Estética -->
-        <div class="plan-card">
-          <div class="plan-card-content">
-            <h3 class="plan-card-title">E90 – Prótese Estética</h3>
-            <p class="plan-card-audience">Nacional / Linha estética - próteses</p>
-            <div class="price-wrapper">
-              <span class="price-currency">R$</span>
-              <span class="price-amount-large">166,87</span>
-              <span class="price-suffix">/mês</span>
+        <!-- Plan Card 4: E90 – Prótese Estética --><div class="plan-card group bg-gray-800/60 backdrop-blur-lg border border-white/20 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30">
+          <div class="plan-card-content flex-grow">
+            <h4 class="text-xl font-bold text-white">E90 – Prótese Estética</h4>
+            <p class="text-sm text-blue-300/80 mb-3">Nacional / Linha estética - próteses</p>
+            <div class="text-2xl font-bold text-white my-2">
+              R$ 166,87 <span class="text-base font-normal text-gray-300">/mês</span>
             </div>
-            <ul class="plan-card-features-list">
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+            <ul class="space-y-2 my-4 text-sm">
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Cobertura clínica completa</span>
+                <span class="text-[#d1d5db]">Cobertura clínica completa</span>
               </li>
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Próteses fixas e móveis</span>
+                <span class="text-[#d1d5db]">Próteses fixas e móveis</span>
               </li>
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Facetas e coroas em porcelana</span>
+                <span class="text-[#d1d5db]">Facetas e coroas em porcelana</span>
               </li>
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+               <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Clareamento</span>
+                <span class="text-[#d1d5db]">Clareamento</span>
               </li>
             </ul>
           </div>
-          <a href="#" class="cta-button-standard">
+          <a href="#" class="cta-button cta-button-standard block w-full mt-8 bg-[#374151] text-white font-semibold py-3 px-6 rounded-lg text-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-cyan-400 group-hover:shadow-lg group-hover:shadow-blue-500/3D0">
             Contratar Agora
           </a>
         </div>
 
-        <!-- Plan Card: E170 – Orto + Prótese -->
-        <div class="plan-card">
-          <div class="plan-card-content">
-            <h3 class="plan-card-title">E170 – Orto + Prótese</h3>
-            <p class="plan-card-audience">Nacional / Linha estética premium</p>
-            <div class="price-wrapper">
-              <span class="price-currency">R$</span>
-              <span class="price-amount-large">187,77</span>
-              <span class="price-suffix">/mês</span>
+        <!-- Plan Card 5: E170 – Orto + Prótese --><div class="plan-card group bg-gray-800/60 backdrop-blur-lg border border-white/20 rounded-2xl p-8 flex flex-col transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/30">
+          <div class="plan-card-content flex-grow">
+            <h4 class="text-xl font-bold text-white">E170 – Orto + Prótese</h4>
+            <p class="text-sm text-blue-300/80 mb-3">Nacional / Linha estética premium</p>
+            <div class="text-2xl font-bold text-white my-2">
+              R$ 187,77 <span class="text-base font-normal text-gray-300">/mês</span>
             </div>
-            <ul class="plan-card-features-list">
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+            <ul class="space-y-2 my-4 text-sm">
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Ortodontia completa</span>
+                <span class="text-[#d1d5db]">Ortodontia completa</span>
               </li>
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+              <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Prótese estética (coroas, facetas)</span>
+                <span class="text-[#d1d5db]">Prótese estética (coroas, facetas)</span>
               </li>
-              <li class="feature-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
-                  <path d="M20 6 9 17l-5-5"/>
+               <li class="flex items-start">
+                <svg class="feature-icon w-4 h-4 text-[#22d3ee] mr-2 flex-shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
+                  <use href="#icon-check"></use>
                 </svg>
-                <span class="feature-text">Clareamento</span>
+                <span class="text-[#d1d5db]">Clareamento</span>
               </li>
             </ul>
           </div>
-          <a href="#" class="cta-button-standard">
+          <a href="#" class="cta-button cta-button-standard block w-full mt-8 bg-[#374151] text-white font-semibold py-3 px-6 rounded-lg text-center transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-cyan-400 group-hover:shadow-lg group-hover:shadow-blue-500/30">
             Contratar Agora
           </a>
         </div>
+      </div>
 
-      </div> <!-- End plans grid -->
-    </div> <!-- End container -->
+    </div>
   </section>
+
+</body>
+

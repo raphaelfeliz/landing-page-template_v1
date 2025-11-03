@@ -41,6 +41,10 @@ pids
 *.seed
 *.pid.lock
 
+# Media assets generated or downloaded locally
+public/media/
+src/assets/media/
+
 # Coverage directory used by tools like istanbul
 coverage/
 *.lcov
