@@ -1,92 +1,639 @@
-<!--
-PATH: /src/sections/hero.htm
-PURPOSE: Hero section featuring main headline, subtext, and call-to-action buttons.
-IMPORTS: None (self-contained HTML, CSS, and JS).
-EXPORTS: Introductory section with visual focus and CTA interaction.
-NOTES: Designed as a standalone section file; all styling and scripting are inline.
--->
+<section id="hero-section" class="hero modern-hero">
+    
+  <!-- Background decorative elements --><div class="hero-bg-effect hero-bg-effect--top-left"></div>
+  <div class="hero-bg-effect hero-bg-effect--bottom-right"></div>
+  
+  <div class="container">
+  
+    <div class="hero-content">
 
-<section id="hero-section">
-  <div class="hero-content">
-    <h1>Your Perfect Smile Starts Here</h1>
-    <p>Affordable, accessible, and high-quality dental plans designed to keep you smiling.</p>
-    <div class="hero-buttons">
-      <a href="#" class="btn-primary">View Plans</a>
-      <a href="#" class="btn-secondary">Contact Us</a>
+      <!-- Bloco 2: Conteúdo da Direita (Card) - MOVED TO LEFT --><div class="hero-visual animate-float">
+        <div class="hero-card">
+          <div class="hero-card-glow"></div>
+          <div class="hero-card-content">
+            <div class="hero-card-inner-glow"></div>
+
+            <div class="hero-image-container">
+              <div class="hero-shield animate-pulse-shield"></div>
+              <div class="hero-image-wrapper">
+                <img
+                  src="/media/sorria-novament.png"
+                  alt="Mulher sorrindo"
+                  class="hero-image"
+                  onerror="this.onerror=null; this.src='https://placehold.co/160x160/1F2937/E5E7EB?text=Amil'"
+                />
+              </div>
+            </div>
+
+            <h3 class="hero-card-title"><span id="rotating-treatment-text">Cáries</span></h3>
+            <p class="hero-card-subtitle">Proteção completa para seu sorriso.</p>
+
+            <div class="hero-progress-bars">
+              <div class="progress-bar progress-bar--primary">
+                 <div></div>
+              </div>
+              <div class="progress-bar progress-bar--secondary">
+                 <div></div>
+              </div>
+              <div class="progress-bar progress-bar--tertiary">
+                 <div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Bloco 1: Conteúdo da Esquerda (4 blocos empilhados) - MOVED TO RIGHT --><div class="hero-text">
+          
+          <!-- Bloco 1: Título --><h1 class="hero-title animate-fade-in-up">
+            <span class="hero-highlight">Amil Dental em 24h</span>
+            <br class="title-break"/> online e sem burocracia.
+          </h1>
+
+          <!-- Bloco 2: Subtítulos --><div class="hero-subtitles animate-fade-in-up">
+            <p class='sub-title'>
+              Veja List de Tratamentos <span class="hero-highlight-subtitle">com Início Imediato</span>
+            </p>
+            <p class="hero-description">
+              Seu tratamento está disponível em 24h? Descubra aqui!
+            </p>
+          </div>
+
+          <!-- Bloco 3: Botões --><div class="hero-buttons animate-fade-in-up">
+            <button class="btn btn-primary">
+              Consultar tratamento
+            </button>
+            <button class="btn btn-secondary">
+              <span class="button-content">
+                <span class="button-text">Começar a Usar</span>
+                <!-- Inline SVG for MoveRight --><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hero-icon">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Bloco 4: Selos de Confiança --><div class="hero-trust-badges animate-fade-in-up">
+            <div class="trust-badge">
+              <!-- Inline SVG for Check --><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="trust-icon">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Confiança Amil</span>
+            </div>
+            <div class="trust-badge">
+              <!-- Inline SVG for Check --><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="trust-icon">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Rede Nacional</span>
+            </div>
+          </div>
+      </div>
+      
     </div>
   </div>
 </section>
 
 <style>
-  #hero-section {
-    width: 100%;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #0078ff 0%, #4facfe 100%);
-    color: white;
-    text-align: center;
-    font-family: sans-serif;
-    padding: 2rem;
-  }
+    /* ============================================== */
+    /* 1. Main Hero Section
+    /* ============================================== */
+    .hero.modern-hero {
+      background: #111827;
+      color: white;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center; /* Center the container */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      box-sizing: border-box; /* Ensures padding doesn't break layout */
+      padding: 6rem 2rem; /* Added padding */
+      min-height: 90vh;
+    }
 
-  #hero-section .hero-content h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
+    /* Using .container from header template */
+    #hero-section .container {
+      width: 100%;
+      max-width: 1200px; /* Added max-width */
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+    }
 
-  #hero-section .hero-content p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    /* ============================================== */
+    /* 2. Background Decorative Elements
+    /* ============================================== */
+    .hero-bg-effect {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(80px); /* Increased blur */
+      opacity: 0.25; /* Adjusted opacity */
+      z-index: 1;
+    }
 
-  #hero-section .hero-buttons {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-  }
+    .hero-bg-effect--top-left {
+      top: -300px;
+      left: -300px;
+      background: rgba(37, 99, 235, 0.4);
+    }
 
-  #hero-section .btn-primary,
-  #hero-section .btn-secondary {
-    text-decoration: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 0.5rem;
-    font-weight: bold;
-    transition: background 0.3s ease;
-  }
+    .hero-bg-effect--bottom-right {
+      bottom: -300px;
+      right: -300px;
+      background: rgba(6, 182, 212, 0.4);
+    }
 
-  #hero-section .btn-primary {
-    background-color: white;
-    color: #0078ff;
-  }
+    /* ============================================== */
+    /* 3. Hero Content Container (50/50 split)
+    /* ============================================== */
+    .hero-content {
+      display: flex;
+      flex-direction: row; /* This is the 50/50 horizontal split */
+      align-items: center; /* Vertically center both halves */
+      justify-content: center;
+      gap: 1rem; /* <-- CHANGED: Was 2rem, now 1rem for less space */
+      position: relative;
+      z-index: 10;
+    }
 
-  #hero-section .btn-primary:hover {
-    background-color: #e6e6e6;
-  }
+    /* ============================================== */
+    /* 4. Left Column: Text Content (4 stacked blocks)
+    /* ============================================== */
+    .hero-text {
+      flex: 1; /* Takes 50% of the space */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* Vertically center the 4 blocks */
+      gap: 2rem; /* Space between the 4 blocks */
+    }
 
-  #hero-section .btn-secondary {
-    background-color: transparent;
-    color: white;
-    border: 2px solid white;
-  }
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: white;
+      margin: 0; /* Removed default margin */
+    }
 
-  #hero-section .btn-secondary:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
+    .hero-highlight {
+      /* Highlight for the primary line of the title */
+      background: linear-gradient(135deg, #60a5fa, #06b6d4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Break line spacing for the title */
+    .hero-title .title-break {
+        display: none; /* Hide on desktop, just use the line break */
+    }
+
+    /* This is Block 2 */
+    .hero-subtitles {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem; /* Space between the two subtitle lines */
+    }
+
+    .sub-title {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 1.4;
+      margin: 0;
+    }
+    
+    .hero-highlight-subtitle {
+      color: #06b6d4; /* The cyan color */
+      font-weight: 600;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: #d1d5db;
+      line-height: 1.6;
+      max-width: 500px;
+      margin: 0; /* Removed default margin */
+    }
+
+    /* This is Block 3 */
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* Shared button base */
+    .hero-buttons .btn {
+      padding: 0.9rem 1.8rem;
+      font-size: 1rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* Primary button (matches header template .btn-primary) */
+    .hero-buttons .btn-primary {
+      background-color: #2563eb; 
+      color: white;
+      /* Ensuring it uses the gradient from template if available */
+      background: linear-gradient(90deg, #2563eb, #06b6d4);
+    }
+
+    .hero-buttons .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+      background-color: #3b82f6;
+    }
+
+    .hero-buttons .btn-secondary {
+      background: transparent;
+      color: #d1d5db;
+      border: 1px solid #374151; /* Subtle border */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-buttons .btn-secondary:hover {
+      background: #1F2937; /* Darker bg on hover */
+      color: white;
+      transform: translateY(-3px);
+      border-color: #4b5563;
+    }
+
+    .hero-icon {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-buttons .btn-secondary:hover .hero-icon {
+      transform: translateX(4px);
+    }
+
+    .button-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      height: 100%;
+    }
+
+    .button-text {
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    /* This is Block 4 */
+    .hero-trust-badges {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+      color: #9ca3af;
+    }
+
+    .trust-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .trust-icon {
+      width: 20px;
+      height: 20px;
+      color: #60a5fa; /* Blue checkmark */
+    }
+
+    /* ============================================== */
+    /* 5. Right Column: Visual Card
+    /* ============================================== */
+    .hero-visual {
+      flex: 1; /* Takes 50% of the space */
+      display: flex;
+      align-items: center; 
+      justify-content: center;
+      height: 100%;
+    }
+
+    .hero-card {
+      position: relative;
+      width: 320px;
+      height: 450px;
+    }
+
+    .hero-card-glow {
+      position: absolute;
+      inset: -6px;
+      background: linear-gradient(135deg, #2563eb, #06b6d4);
+      border-radius: 24px;
+      filter: blur(20px);
+      opacity: 0.3;
+      transition: opacity 0.5s ease;
+      z-index: 8;
+    }
+
+    .hero-card:hover .hero-card-glow {
+      opacity: 0.5;
+    }
+
+    /* --- 5a. Card Content --- */
+    .hero-card-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: rgba(31, 41, 55, 0.6);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      z-index: 9;
+    }
+
+    .hero-card-inner-glow {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+      opacity: 0.5;
+      z-index: 10;
+    }
+
+    /* --- 5b. Card Image Area --- */
+    .hero-image-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      z-index: 11;
+    }
+
+    .hero-shield {
+      position: absolute;
+      inset: -10px; /* Made shield pulse bigger */
+      background: linear-gradient(135deg, #3b82f6, #06b6d4);
+      border-radius: 50%;
+      opacity: 0; /* Start invisible, pulse will show it */
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      overflow: hidden;
+      /* Image border matches the glow border */
+      border: 4px solid #93c5fd; 
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+    }
+
+    .hero-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* --- 5c. Card Text & Progress --- */
+    .hero-card-title {
+      font-size: 1.75rem; /* Slightly larger */
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.5rem;
+      margin-top: 1rem;
+      z-index: 11;
+    }
+
+    .rotating-text {
+      opacity: 0; /* Start hidden */
+      transition: opacity 0.5s ease-in-out; /* Smooth fade */
+    }
+
+    .hero-card-subtitle {
+      color: #d1d5db;
+      text-align: center;
+      margin-bottom: 2.5rem; /* Increased margin */
+      z-index: 11;
+    }
+
+    .hero-progress-bars {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      z-index: 11;
+    }
+
+    .progress-bar {
+      height: 8px; /* Made bars thicker */
+      border-radius: 4px;
+      opacity: 1; /* Full opacity */
+      background-color: #4b5563; /* Base color for all */
+    }
+
+    /* Inner bar for progress */
+    .progress-bar > div {
+       height: 100%;
+       border-radius: 4px;
+    }
+
+    /* Adjusted to match image */
+    .progress-bar--primary > div {
+      width: 90%;
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    }
+
+    .progress-bar--secondary > div {
+      width: 70%;
+      background: linear-gradient(90deg, #06b6d4, #67e8f9);
+    }
+
+    .progress-bar--tertiary > div {
+      width: 100%;
+      background: #4b5563; /* Kept gray for the full bar */
+    }
+
+    /* ============================================== */
+    /* 6. Animations
+    /* ============================================== */
+    
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(-10px);
+      }
+      50% {
+        transform: translateY(10px);
+      }
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Staggered delays for elements */
+    .animate-fade-in-up {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+
+    /* Direct child selectors for better staggering */
+    .hero-text > *:nth-child(1) { animation-delay: 0.1s; } /* Block 1: Title */
+    .hero-text > *:nth-child(2) { animation-delay: 0.2s; } /* Block 2: Subtitles */
+    .hero-text > *:nth-child(3) { animation-delay: 0.3s; } /* Block 3: Buttons */
+    .hero-text > *:nth-child(4) { animation-delay: 0.4s; } /* Block 4: Badges */
+    
+
+    @keyframes pulse-shield {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.3;
+      }
+      70% {
+        transform: scale(1.2);
+        opacity: 0.6;
+      }
+      100% {
+        transform: scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    .animate-pulse-shield {
+      animation: pulse-shield 2s ease-out infinite; 
+    }
+
+    /* ============================================== */
+    /* 7. Responsive Design
+    /* ============================================== */
+    @media (max-width: 1024px) {
+      .hero.modern-hero {
+        padding: 4rem 1rem;
+        min-height: auto;
+      }
+
+      /* Stack to a single column */
+      .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 3rem;
+        align-items: center;
+      }
+      
+      .hero-text {
+        align-items: center; /* Center text content */
+        margin-top: 0;
+        order: 2; /* Text comes after card */
+      }
+
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .hero-visual {
+        padding-top: 0;
+        align-items: center; /* Center card */
+        order: 1; /* Move card to the top on mobile */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero.modern-hero {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+      }
+      
+      .hero-title {
+        font-size: 2.2rem;
+      }
+      
+      .sub-title {
+        font-size: 1.25rem;
+      }
+      
+      .hero-description {
+        font-size: 1rem;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+        flex-direction: column; /* Stack buttons */
+        width: 100%;
+        max-width: 350px;
+      }
+
+      .hero-trust-badges {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .hero-bg-effect {
+        width: 300px;
+        height: 300px;
+      }
+      
+      .hero-card {
+        transform: scale(0.9); /* Scale down card a bit */
+      }
+    }
 </style>
 
 <script>
-  // Example of a simple fade-in animation for the hero content
-  document.addEventListener("DOMContentLoaded", () => {
-    const hero = document.querySelector("#hero-section .hero-content");
-    hero.style.opacity = "0";
-    hero.style.transition = "opacity 1.2s ease";
-    setTimeout(() => {
-      hero.style.opacity = "1";
-    }, 300);
-  });
+    document.addEventListener("DOMContentLoaded", () => {
+      const hero = document.getElementById("hero-section");
+      if (!hero) return;
+      
+      console.log("Hero section loaded and ready:", hero);
+
+      // Rotating Treatments Logic
+      const rotatingTextElement = document.getElementById("rotating-treatment-text");
+      if (rotatingTextElement) {
+        const treatments = ["Cáries", "Canal", "Implante", "Extração", "Siso", "Prótese", "Limpeza", "Emergência"];
+        let currentIndex = 0;
+
+        function updateTreatmentText() {
+          rotatingTextElement.style.opacity = '0'; // Start fade out
+          setTimeout(() => {
+            rotatingTextElement.textContent = treatments[currentIndex];
+            rotatingTextElement.style.opacity = '1'; // Fade in
+            currentIndex = (currentIndex + 1) % treatments.length;
+          }, 500); // Wait for fade out, then change text and fade in
+        }
+
+        // Initial display
+        rotatingTextElement.textContent = treatments[currentIndex];
+        rotatingTextElement.style.opacity = '1';
+        currentIndex = (currentIndex + 1) % treatments.length;
+
+        setInterval(updateTreatmentText, 1250); // <-- CHANGED: Was 2500, now 1250ms for 2x speed
+      }
+    });
 </script>

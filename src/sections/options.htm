@@ -1,0 +1,674 @@
+<
+  
+  <style>
+    /* Configure Tailwind to use Inter font */
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      background-color: #111827;
+      min-height: 100vh;
+    }
+
+    /* Custom styles merged from OptionsSection.css */
+    .options-to-pick {
+      position: relative;
+      overflow: hidden;
+      background-color: #111827;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    @media (min-width: 640px) {
+      .options-to-pick {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+      }
+    }
+
+    .options-bg-effect {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      height: 800px;
+      width: 800px;
+      transform: translateX(-50%) translateY(-50%);
+      border-radius: 9999px;
+      background-color: rgba(3, 7, 18, 0.5);
+      opacity: 0.3;
+      filter: blur(48px);
+      z-index: 0;
+    }
+
+    .options-container {
+      position: relative;
+      z-index: 10;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 80rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    @media (min-width: 640px) {
+      .options-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .options-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+      }
+    }
+
+    /* Section Header Styles */
+    .options-header {
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 48rem;
+      text-align: center;
+    }
+
+    .options-header-subtitle {
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #22d3ee;
+    }
+
+    .options-header-title {
+      margin-top: 0.5rem;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    @media (min-width: 640px) {
+      .options-header-title {
+        font-size: 3rem;
+      }
+    }
+
+    .options-header-description {
+      margin-top: 1rem;
+      font-size: 1.125rem;
+      color: #d1d5db;
+    }
+
+    /* Highlighted Plan Card Styles */
+    .options-highlight-wrapper {
+      margin-top: 4rem;
+    }
+
+    .highlighted-plan-card {
+      position: relative;
+      margin-bottom: 4rem;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(96, 165, 250, 0.5);
+      background-color: rgba(31, 41, 55, 0.6);
+      backdrop-filter: blur(16px);
+    }
+
+    .highlighted-plan-card-glow {
+      position: absolute;
+      inset: 0;
+      z-index: -10;
+      border-radius: 1.5rem;
+      background-image: linear-gradient(to right, #3b82f6, #06b6d4);
+      opacity: 0.1;
+      filter: blur(24px);
+    }
+
+    .highlight-content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 768px) {
+      .highlight-content-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    .highlight-image-column {
+      position: relative;
+      min-height: 300px;
+      overflow: hidden;
+      border-top-left-radius: 1.5rem;
+      border-top-right-radius: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .highlight-image-column {
+        min-height: 100%;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: 1.5rem;
+      }
+    }
+
+    .highlighted-plan-image {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .highlighted-plan-image-overlay {
+      position: absolute;
+      inset: 0;
+      background-image: linear-gradient(to top, rgba(31, 41, 55, 0.5), transparent);
+    }
+
+    @media (min-width: 768px) {
+      .highlighted-plan-image-overlay {
+        background-image: linear-gradient(to right, rgba(31, 41, 55, 0.5), transparent);
+      }
+    }
+
+    .highlight-text-column {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+    }
+
+    @media (min-width: 1024px) {
+      .highlight-text-column {
+        padding: 3rem;
+      }
+    }
+
+    .highlight-badge {
+      position: absolute;
+      top: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      border-radius: 9999px;
+      background-image: linear-gradient(to right, #3b82f6, #06b6d4);
+      padding: 0.25rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+
+    @media (min-width: 768px) {
+      .highlight-badge {
+        left: auto;
+        right: 2rem;
+        transform: translateX(0);
+      }
+    }
+
+    .highlighted-plan-text-content {
+      flex-grow: 1;
+    }
+
+    .highlighted-plan-title {
+      margin-bottom: 0.25rem;
+      margin-top: 1rem;
+      font-size: 1.875rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .highlighted-plan-audience {
+      margin-bottom: 1.5rem;
+      font-size: 1rem;
+      color: #9ca3af;
+    }
+
+    /* Price Styles */
+    .price-wrapper {
+      margin-bottom: 1.5rem;
+    }
+
+    .price-currency {
+      vertical-align: top;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #9ca3af;
+    }
+
+    .price-amount-large {
+      margin: 0 0.25rem;
+      font-size: 3rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .price-suffix {
+      color: #9ca3af;
+    }
+
+    /* Features List Styles */
+    .highlight-features-list,
+    .plan-card-features-list {
+      margin-bottom: 2rem;
+      list-style: none;
+      padding: 0;
+    }
+
+    .feature-item-large,
+    .feature-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .feature-icon {
+      height: 1.25rem;
+      width: 1.25rem;
+      flex-shrink: 0;
+      color: #22d3ee;
+    }
+
+    .feature-text-large {
+      font-size: 1.125rem;
+      color: #d1d5db;
+    }
+
+    .feature-text {
+      color: #d1d5db;
+    }
+
+    /* CTA Button Styles */
+    .cta-button-highlighted {
+      margin-top: auto;
+      display: block;
+      width: 100%;
+      border-radius: 0.5rem;
+      background-color: #374151;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: #ffffff;
+      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .highlighted-plan-card:hover .cta-button-highlighted {
+      background-image: linear-gradient(to right, #3b82f6, #06b6d4);
+      box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3), 0 4px 6px -4px rgba(59, 130, 246, 0.3);
+    }
+
+    /* Standard Plan Card Styles */
+    .plan-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background-color: rgba(31, 41, 55, 0.6);
+      padding: 2rem;
+      backdrop-filter: blur(16px);
+      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .plan-card:hover {
+      box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.2), 0 8px 10px -6px rgba(59, 130, 246, 0.2);
+    }
+
+    .plan-card-content {
+      flex-grow: 1;
+    }
+
+    .plan-card-title {
+      margin-bottom: 0.25rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .plan-card-audience {
+      margin-bottom: 1.5rem;
+      font-size: 0.875rem;
+      color: #9ca3af;
+    }
+
+    .cta-button-standard {
+      margin-top: auto;
+      display: block;
+      width: 100%;
+      border-radius: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 600;
+      background-color: #374151;
+      color: #ffffff;
+      transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+      text-decoration: none;
+    }
+
+    .plan-card:hover .cta-button-standard {
+      background-image: linear-gradient(to right, #3b82f6, #06b6d4);
+      box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.2), 0 4px 6px -4px rgba(59, 130, 246, 0.2);
+    }
+
+    /* Disclaimer & Grid Styles */
+    .options-disclaimer {
+      margin-top: 4rem;
+      text-align: center;
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+
+    .options-grid-title {
+      margin-top: 4rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .options-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .options-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Options Section -->
+  <section id="options-to-pick" class="options-to-pick">
+    <!-- Background Effect -->
+    <div class="options-bg-effect"></div>
+
+    <div class="options-container">
+      <!-- Section Header -->
+      <div class="options-header">
+        <h2 class="options-header-subtitle">
+          Nossos Planos
+        </h2>
+        <p class="options-header-title">
+          Escolha a proteção ideal para seu sorriso.
+        </p>
+        <p class="options-header-description">
+          Dos cuidados essenciais aos tratamentos estéticos mais avançados, temos o plano perfeito para você e sua família.
+        </p>
+      </div>
+
+      <!-- Highlighted Card Wrapper -->
+      <div class="options-highlight-wrapper">
+        <!-- Highlighted Plan Card (DENTAL 205) -->
+        <div class="highlighted-plan-card">
+          <!-- Subtle glow -->
+          <div class="highlighted-plan-card-glow"></div>
+          
+          <div class="highlight-content-grid">
+            
+            <!-- Left Column: Image -->
+            <div class="highlight-image-column">
+              <img
+                src="https://placehold.co/600x600/0ea5e9/ffffff?text=Fam%C3%ADlia+Sorrindo&font=inter"
+                alt="Smiling family"
+                class="highlighted-plan-image"
+              />
+              <div class="highlighted-plan-image-overlay"></div>
+            </div>
+
+            <!-- Right Column: Content -->
+            <div class="highlight-text-column">
+              <!-- "Most Recommended" badge -->
+              <div class="highlight-badge">
+                Mais Recomendado
+              </div>
+              
+              <div class="highlighted-plan-text-content">
+                <h3 class="highlighted-plan-title">DENTAL 205</h3>
+                <p class="highlighted-plan-audience">Nacional / Pessoas físicas ou familiares</p>
+
+                <div class="price-wrapper">
+                  <span class="price-currency">R$</span>
+                  <span class="price-amount-large">42,50</span>
+                  <span class="price-suffix">/mês (p/ 3+ pessoas)</span>
+                </div>
+
+                <ul class="highlight-features-list">
+                  <li class="feature-item-large">
+                    <!-- Check Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
+                    <span class="feature-text-large">Consultas, limpezas, radiografias</span>
+                  </li>
+                  <li class="feature-item-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
+                    <span class="feature-text-large">Extração de siso e tratamento de canal</span>
+                  </li>
+                  <li class="feature-item-large">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
+                    <span class="feature-text-large">Documentação ortodontica básica</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <!-- Highlighted Button -->
+              <a href="#" class="cta-button-highlighted">
+                Contratar Agora
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Disclaimer/Notice -->
+      <div class="options-disclaimer">
+        <p>† Valores "a partir de" baseados em revendedores e podem variar por localidade, forma de pagamento ou condições específicas. Verifique o contrato.</p>
+      </div>
+
+      <!-- Title for Other Plans Grid -->
+      <h3 class="options-grid-title">
+        Outras Opções de Planos
+      </h3>
+
+      <!-- Plans Grid -->
+      <div class="options-grid">
+        
+        <!-- Plan Card: DENTAL KIDS K25 -->
+        <div class="plan-card">
+          <div class="plan-card-content">
+            <h3 class="plan-card-title">DENTAL KIDS K25</h3>
+            <p class="plan-card-audience">Nacional / Crianças de 0 a 13 anos</p>
+            <div class="price-wrapper">
+              <span class="price-currency">R$</span>
+              <span class="price-amount-large">32,89</span>
+              <span class="price-suffix">/mês</span>
+            </div>
+            <ul class="plan-card-features-list">
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Cobertura clínica para infância</span>
+              </li>
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Consultas de rotina e aplicação de flúor</span>
+              </li>
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Focado em prevenção</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="cta-button-standard">
+            Contratar Agora
+          </a>
+        </div>
+
+        <!-- Plan Card: E50 – Clareamento -->
+        <div class="plan-card">
+          <div class="plan-card-content">
+            <h3 class="plan-card-title">E50 – Clareamento</h3>
+            <p class="plan-card-audience">Nacional / Linha estética</p>
+            <div class="price-wrapper">
+              <span class="price-currency">R$</span>
+              <span class="price-amount-large">75,94</span>
+              <span class="price-suffix">/mês</span>
+            </div>
+            <ul class="plan-card-features-list">
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Cobertura clínica básica</span>
+              </li>
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Clareamento dental (gel + moldeiras)</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="cta-button-standard">
+            Contratar Agora
+          </a>
+        </div>
+
+        <!-- Plan Card: E80 – Ortodontia -->
+        <div class="plan-card">
+          <div class="plan-card-content">
+            <h3 class="plan-card-title">E80 – Ortodontia</h3>
+            <p class="plan-card-audience">Nacional / Linha estética - ortodontia</p>
+            <div class="price-wrapper">
+              <span class="price-currency">R$</span>
+              <span class="price-amount-large">99,11</span>
+              <span class="price-suffix">/mês</span>
+            </div>
+            <ul class="plan-card-features-list">
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Cobertura clínica completa</span>
+              </li>
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Instalação e manutenção de aparelho</span>
+              </li>
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Clareamento incluso</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="cta-button-standard">
+            Contratar Agora
+          </a>
+        </div>
+
+        <!-- Plan Card: E90 – Prótese Estética -->
+        <div class="plan-card">
+          <div class="plan-card-content">
+            <h3 class="plan-card-title">E90 – Prótese Estética</h3>
+            <p class="plan-card-audience">Nacional / Linha estética - próteses</p>
+            <div class="price-wrapper">
+              <span class="price-currency">R$</span>
+              <span class="price-amount-large">166,87</span>
+              <span class="price-suffix">/mês</span>
+            </div>
+            <ul class="plan-card-features-list">
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Cobertura clínica completa</span>
+              </li>
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Próteses fixas e móveis</span>
+              </li>
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Facetas e coroas em porcelana</span>
+              </li>
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Clareamento</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="cta-button-standard">
+            Contratar Agora
+          </a>
+        </div>
+
+        <!-- Plan Card: E170 – Orto + Prótese -->
+        <div class="plan-card">
+          <div class="plan-card-content">
+            <h3 class="plan-card-title">E170 – Orto + Prótese</h3>
+            <p class="plan-card-audience">Nacional / Linha estética premium</p>
+            <div class="price-wrapper">
+              <span class="price-currency">R$</span>
+              <span class="price-amount-large">187,77</span>
+              <span class="price-suffix">/mês</span>
+            </div>
+            <ul class="plan-card-features-list">
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Ortodontia completa</span>
+              </li>
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Prótese estética (coroas, facetas)</span>
+              </li>
+              <li class="feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feature-icon">
+                  <path d="M20 6 9 17l-5-5"/>
+                </svg>
+                <span class="feature-text">Clareamento</span>
+              </li>
+            </ul>
+          </div>
+          <a href="#" class="cta-button-standard">
+            Contratar Agora
+          </a>
+        </div>
+
+      </div> <!-- End plans grid -->
+    </div> <!-- End container -->
+  </section>

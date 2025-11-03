@@ -1,70 +1,237 @@
-<!--
-PATH: /src/sections/header.htm
-PURPOSE: Top navigation bar and logo section for the landing page.
-IMPORTS: None (self-contained HTML, CSS, and JS).
-EXPORTS: Visual header with logo placeholder and navigation items.
-NOTES: Designed as a standalone section file; all styling and scripting are inline.
--->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <section id="header-section">
-  <header>
-    <div class="logo">LOGO</div>
-    <nav>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Plans</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <img 
+                    src="https://www.amildental.com.br/file/general/Amil_dental_Positiva_Colorida_RGB-01.png" 
+                    alt="AMIL Dental" 
+                    class="logo-image"
+                />
+            </div>
+
+            <nav class="nav" id="mobile-nav">
+                <ul>
+                    <li><a href="#aproveitar">Início</a></li>
+                    <li><a href="#planos">Planos</a></li>
+                    <li><a href="#encontre seu dentista">Sobre</a></li>
+                    <li><a href="#seja atendido">Contato</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-cta">
+                <button class="btn-primary">Planos e Valores</button>
+            </div>
+            
+            <button class="hamburger-button" id="hamburger-btn" aria-label="Abrir menu" aria-expanded="false">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+        </div>
+    </header>
 </section>
 
 <style>
-  #header-section {
-    width: 100%;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #e0e0e0;
-  }
+    /* ============================================== */
+    /* ZERO MARGIN/PADDING RESET */
+    /* ============================================== */
+    #header-section,
+    .header,
+    .nav ul,
+    .nav li {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
 
-  #header-section header {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: sans-serif;
-  }
+    /* Container Utility */
+    .container {
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
 
-  #header-section .logo {
-    font-weight: bold;
-    font-size: 1.25rem;
-  }
+    /* Primary Button Style */
+    .btn-primary {
+        background: linear-gradient(90deg, #2563eb, #06b6d4);
+        color: white;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.25rem 1rem; 
+        font-size: 0.9rem; 
+        border-radius: 0.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    
+    /* ============================================== */
+    /* HEADER STYLES (Light & Thin) */
+    /* ============================================== */
+    .header {
+        background-color: rgba(255, 255, 255, 0.95);
+        border-bottom: 1px solid #e5e7eb;
+        padding: 0.25rem 0 !important; 
+        margin: 0 !important; 
+        position: relative; /* Crucial for positioning the mobile menu */
+        z-index: 20;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
 
-  #header-section nav ul {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-    margin: 0;
-    padding: 0;
-  }
+    .header > .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-  #header-section nav a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-  }
+    .logo-image {
+        height: 40px; 
+        max-width: 120px;
+    }
 
-  #header-section nav a:hover {
-    color: #0078ff;
-  }
+    /* Desktop Navigation (Default) */
+    .nav ul {
+        list-style: none;
+        display: flex;
+        gap: 1.25rem;
+    }
+
+    .nav a {
+        color: #374151;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s;
+    }
+
+    .nav a:hover {
+        color: #2563eb; 
+    }
+
+    /* ============================================== */
+    /* HAMBURGER MENU STYLES */
+    /* ============================================== */
+    .hamburger-button {
+        display: none; /* Hidden on desktop */
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px; /* Space between lines */
+        z-index: 100;
+        height: 40px; /* Match logo height */
+        width: 40px;
+    }
+
+    .hamburger-button .line {
+        display: block;
+        width: 24px;
+        height: 3px;
+        background-color: #374151; /* Dark line color */
+        border-radius: 2px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Hamburger 'X' animation */
+    .hamburger-button.is-open .line:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-button.is-open .line:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-button.is-open .line:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+
+    /* ============================================== */
+    /* MOBILE RESPONSIVE STYLES */
+    /* ============================================== */
+    @media (max-width: 768px) {
+        
+        /* Show hamburger button */
+        .hamburger-button {
+            display: flex;
+        }
+
+        /* Hide desktop CTA */
+        .header-cta {
+            display: none;
+        }
+
+        /* Re-style .nav as a hidden mobile menu */
+        .nav { 
+            /* Initial hidden state */
+            display: none; 
+
+            /* Dropdown positioning */
+            position: absolute;
+            top: 100%; /* Position right below the header */
+            left: 0;
+            right: 0;
+            width: 100%;
+            
+            /* Appearance */
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding: 1rem !important; /* Override reset */
+        }
+        
+        /* Style mobile menu links */
+        .nav ul {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            width: 100%;
+        }
+        .nav li {
+             width: 100%;
+             padding: 0 !important; /* Override reset */
+        }
+        .nav a {
+            padding: 0.5rem 0.5rem; /* Make links easier to tap */
+            display: block;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        /* This class is toggled by JS to show the menu */
+        .nav.is-open {
+            display: block; 
+        }
+    }
 </style>
 
 <script>
-  // Example of simple section-specific script
-  document.addEventListener("DOMContentLoaded", () => {
-    const header = document.getElementById("header-section");
-    console.log("Header section loaded:", header);
-  });
+    document.addEventListener("DOMContentLoaded", () => {
+        const header = document.getElementById("header-section");
+        if (!header) return;
+        
+        console.log("Header section loaded and ready:", header);
+
+        // Hamburger Menu Logic
+        const hamburgerBtn = document.getElementById("hamburger-btn");
+        const mobileNav = document.getElementById("mobile-nav");
+
+        if (hamburgerBtn && mobileNav) {
+            hamburgerBtn.addEventListener("click", () => {
+                // Toggle 'is-open' class on both the button (for 'X' animation)
+                // and the nav (to show/hide it)
+                hamburgerBtn.classList.toggle("is-open");
+                mobileNav.classList.toggle("is-open");
+
+                // Update ARIA attribute for accessibility
+                const isExpanded = hamburgerBtn.getAttribute("aria-expanded") === "true";
+                hamburgerBtn.setAttribute("aria-expanded", !isExpanded);
+            });
+        }
+    });
 </script>
